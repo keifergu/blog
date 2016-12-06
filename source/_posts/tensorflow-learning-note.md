@@ -98,7 +98,7 @@ print sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
 例如说`1`,中间有连续向下的像素则说明很可能不是`0`,不是`9`等。在实际的数据中则是：
 ![图像-矩阵](http://www.tensorfly.cn/tfdoc/images/MNIST-Matrix.png)
 在图像二维矩阵中的第[8-10]行或者是其它任意行有连续的`1`，在我们展开后的训练集中则是有大量的连续的`1`。这个就是一个很强的证据说明这个图片是数字`1`。
-(待续...)
+
 ## 问题
 1. `input_data.py` 无法使用
 当尝试运行`input_data.py`时提示错误信息：
@@ -108,4 +108,3 @@ from tensorflow.contrib.learn.python.learn.datasets.mnist import read_data_sets 
 原因是因为你安装的 Tensorflow 版本过于老旧，请下载最新版本。
 
 使用 `pip show tensorflow` 可以查看当前版本。具体安装方法请查看[官方安装指南](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/g3doc/get_started/os_setup.md)或着本文章的安装部分，以官方为准。请先卸载旧版本（`sudo pip uninstall tensorflow`）再安装新版本。
-2. 
