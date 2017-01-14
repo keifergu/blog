@@ -3,24 +3,28 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Keifer的博客
-subtitle: 思考，学习，探索
-description:
+title: KeiferGu的博客
+subtitle: 探索、学习、思考
+description: 
 author: Keifer Gu
+avatar: /uploads/avatar.png
 language: zh-Hans
 timezone:
+
+# 插件
 baidu_analytics: bb4e64c0604ee73663e2c947b1173ddf
+duoshuo_shortname: keifergu
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://keifergu.github.io
+url: https://keifergu.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
 source_dir: source
-public_dir: keifergu.github.io
+public_dir: dist
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -31,9 +35,10 @@ skip_render:
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
+auto_spacing: true
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
-filename_case: 0
+filename_case: 1
 render_drafts: false
 post_asset_folder: false
 relative_link: false
@@ -69,4 +74,7 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: git@github.com:keifergu/keifergu.github.io.git
+  branch: master
+  message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }})"

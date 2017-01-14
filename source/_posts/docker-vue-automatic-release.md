@@ -1,7 +1,11 @@
 ---
 title: 20分钟体验使用Docker自动构建、部署Web应用
 date: 2017-01-13 19:49:08
-tags: docker
+categories:
+    - docker
+tags: 
+    - docker
+    - front-end
 ---
 # 前言
 本文旨在带领读者们花费20分钟左右的时间，体验使用 Docker 以及 PaaS 服务自动化构建、发布 Web 应用，让大家了解到 Docker 这个工具的好处和便利。

@@ -1,3 +1,4 @@
 keifergu.github.io/
 node_modules/
 *.log
+db.json
