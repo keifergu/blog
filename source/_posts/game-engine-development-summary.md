@@ -1,7 +1,10 @@
 ---
 title: 微型游戏引擎开发阶段总结
 date: 2016-11-07 14:05:54
-tags: game-enagine javascript
+categories:
+tags: 
+    - JavaScript
+    - 游戏开发
 ---
 
 ## 前言

@@ -1,7 +1,11 @@
 ---
 title: Tensorflow 学习笔记
 date: 2016-11-22 19:29:23
-tags: tensorflow
+categories:
+    - 机器学习
+tags: 
+    - 机器学习
+    - Tensorflow
 ---
 ## 安装
 注意： 中文文档中所安装的版本已经过期，请使用[官方安装指南](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/g3doc/get_started/os_setup.md)安装！

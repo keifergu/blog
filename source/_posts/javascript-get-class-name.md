@@ -1,7 +1,10 @@
 ---
 title: 在Javascript中获取class的类型名的方法
 date: 2016-10-20 21:29:38
-tags:
+categories:
+    - 前端
+tags: 
+    - JavaScript
 ---
 
 在Javascript中获取class的类型名主要有以下几种方法：

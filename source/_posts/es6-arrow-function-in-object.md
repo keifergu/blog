@@ -1,7 +1,11 @@
 ---
 title: ES6箭头函数(arrow_function)的this值探究
 date: 2016-12-06 16:10:37
-tags: javascript
+categories:
+    - 前端
+tags: 
+    - JavaScript
+    - ECMAScript 6
 ---
 ## 前言
 对于ES6新增的箭头函数,相关的介绍可以查看[MDN - Arrow_functions](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)以及[ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/function#箭头函数)。

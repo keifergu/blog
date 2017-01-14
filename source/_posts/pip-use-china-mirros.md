@@ -1,7 +1,8 @@
 ---
 title: Pip 使用国内镜像
 date: 2016-11-24 08:58:04
-tags: python
+tags:
+    - Python
 ---
 官方文档地址：[User Guide — pip 9.0.1 documentation](https://pip.pypa.io/en/stable/user_guide/#configuration)
 #### 新建或编辑配置配置文件
