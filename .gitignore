@@ -1,4 +1,6 @@
 keifergu.github.io/
 node_modules/
 *.log
+dist
+.deploy_git
 db.json
