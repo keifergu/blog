@@ -2,6 +2,9 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "next": "git clone https://github.com/iissnan/hexo-theme-next themes/next && cp themes/_config.yml themes/next/"
+  },
   "hexo": {
     "version": "3.2.2"
   },
