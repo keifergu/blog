@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "next": "cp themes/_config.yml themes/next/"
+    "next": "git submodule init && git submodule update && cp themes/_config.yml themes/next/"
   },
   "hexo": {
     "version": "3.2.2"
