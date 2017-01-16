@@ -6,7 +6,6 @@ MAINTAINER Keifer Gu <keifergu@gmail.com>
 
 # 复制构建出的代码到容器内
 COPY /app/dist /usr/share/nginx/html/
-COPY /app/config/nginx.conf /etc/nginx/sites-enabled
 
 EXPOSE 80
 
