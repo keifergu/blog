@@ -8,14 +8,14 @@ tags:
 ---
 
 # 前言
-在实现 Promise/A+ 库的过程中，第一次听说了 JavaScript 中的 macrotask 和 microtask 的概念。然后 Google 搜索到了以下的资料:
+在尝试实现 Promise/A+ 库 [KPromise](github.com/keifergu/kpromise)的过程中，第一次听说了 JavaScript 中的 macrotask 和 microtask 的概念。然后 Google 搜索到了以下的资料:
 
 - [difference-between-microtask-and-macrotask-within-an-event-loop-context](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context#)
 - [Tasks, microtasks, queues and schedules][jake]
 [jake]: https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
 
 
-阅读之后结合我自己的理解，来说说这两者的区别。
+阅读之后结合我自己的理解，来说一说浏览器的事件循环机制，以及 microtask 在其中扮演了什么样的角色。
 
 # 异步任务运行机制
 
