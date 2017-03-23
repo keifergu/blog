@@ -1,7 +1,10 @@
 ---
-title: 理解 JavaScript 中的 macrotask 和 microtask 的区别
+title: 异步 JavaScript 之理解 macrotask 和 microtask
 categories:
+    - 异步 JavaScript
 tags:
+    - JavaScript
+    - 前端
 ---
 
 # 前言
@@ -70,6 +73,7 @@ console.log('script end');   // 4. 打印字符串 "script end"
 
 # Macrotasks 和 Microtasks
 
+## 基本介绍
 Macrotask 和 microtask 都是属于上述的异步任务中的一种，我们先看一下他们分别是哪些 API ：
 - **macrotasks**: `setTimeout`, `setInterval`, `setImmediate`, I/O, UI rendering
 - **microtasks**: `process.nextTick`, `Promises`, `Object.observe`(废弃), `MutationObserver`
@@ -106,13 +110,38 @@ console.log('script end');
 
 这里的运行结果是`Promise`的立即返回的异步任务会优先于`setTimeout`延时为0的任务执行。
 
-原因是任务队列分为 macrotasks 和 microtasks，而`Promise`中的`then`方法的函数会被推入 microtasks 队列，而`setTimeout`的任务会被推入 macrotasks 队列。**在每一次事件循环中，会优先将 microtask 入栈执行，直到 microtasks 清空**。
+原因是任务队列分为 macrotasks 和 microtasks，而`Promise`中的`then`方法的函数会被推入 microtasks 队列，而`setTimeout`的任务会被推入 macrotasks 队列。**在每一次事件循环中，macrotask 只会提取一个执行，而 microtask 会一直提取，直到 microtasks 队列清空**。
 
-那么也就是说如果我的某个 microtask 任务又推入了一个任务进入  microtasks 队列，那么在主线程完成该任务之后，仍然会继续运行 microtasks 任务直到其耗尽。
+**注：一般情况下，macrotask queues 我们会直接称为 task queues，只有 microtask queues 才会特别指明。**
+
+那么也就是说如果我的某个 microtask 任务又推入了一个任务进入  microtasks 队列，那么在主线程完成该任务之后，仍然会继续运行 microtasks 任务直到任务队列耗尽。
 
 **而事件循环每次只会入栈一个 macrotask ，主线程执行完该任务后又会先检查 microtasks 队列并完成里面的所有任务后再执行 macrotask**
 
-我们可以将流程归纳为下图：
+## 事件循环进程模型
+现在我们根据 [HTML Standard - event loop processing model](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)来描述浏览器的事件循环的进程模型：
+1. 选择最先进入 *事件循环任务队列*的一个任务， 如果队列中没有任务，则直接跳到第6步的 *Microtask*
+2. 设置 *事件循环的当前运行任务*为上一步所选择的任务
+3. *Run*: 运行所选任务
+4. 设置 *事件循环的当前运行任务*为 null
+5. 将刚刚第3步运行的任务从它的任务队列中删除
+6. *Microtasks*:  *perform a microtask checkpoint*
+7. 更新并渲染界面
+8. 返回第1步
+
+*perform a microtask checkpoint* 的执行步骤:
+1. 设置 *performing a microtask checkpoint* 的标记为 true
+2. *Microtask queue handling*: 如果事件循环的 microtask queue 是空，跳到第8步 *Done*
+3. 选取最先进入 microtask queue 的 microtask
+4. 设置 *事件循环的当前运行任务* 为上一步所选择的任务
+5. *Run*: 执行所选取的任务
+6. 设置 *事件循环的当前运行任务* 为 null
+7. 将刚刚第5步运行的 microtask 从它的 microtask queue 中删除
+8. *Done*: For each environment settings object whose responsible event loop is this event loop, notify about rejected promises on that environment settings object *（此处建议查看原网页）*
+9. 清理 Index Database 的事务
+10. 使 *performing a microtask checkpoint* 的标记为 false
+
+在我们的浏览器环境的事件循环中， JavaScript 脚本也会作为一个 task 被推入 task queue，我们在运行这个事件后，该脚本中的 microtasks，tasks 才会被推入队列。
 
 <!-- ```flow
 st=>start: 开始执行
@@ -129,7 +158,7 @@ emis(yes)->emas
 emas(no)->mas->js
 emas(yes)->end
 ``` -->
-![](/images/microtask.svg)
+
 # Microtask 的应用
 
 > [Vue 中如何使用 MutationObserver 做批量处理 - 顾轶灵的回答](http://zhihu.com/question/55364497/answer/144215284)
@@ -137,7 +166,7 @@ emas(yes)->end
 > 为啥要用 microtask？根据 HTML Standard，在每个 task 运行完以后，UI 都会重渲染，那么在 microtask 中就完成数据更新，当前 task 结束就可以得到最新的 UI 了。反之如果新建一个 task 来做数据更新，那么渲染就会进行两次。
 
 
-意味着使用 microtask 对 DOM 进行队列式更新会得到更高的效率。
+根据我们上面提到的事件循环进程模型，每一次执行 task 后，然后执行 microtasks queue，最后进行页面更新。如果我们使用 task 来设置 DOM 更新，那么效率会更低。而 microtask 则会在页面更新之前完成数据更新，会得到更高的效率。
 
 
 # Microtask 的实现
