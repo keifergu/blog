@@ -1,5 +1,5 @@
 ---
-title: ES6箭头函数(arrow_function)的this值探究
+title: ES6箭头函数(arrow_function)的 this 值探究
 date: 2016-12-06 16:10:37
 categories:
     - 前端

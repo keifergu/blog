@@ -1,12 +1,14 @@
 ---
 title: 异步 JavaScript 之理解 macrotask 和 microtask
+date: 2017-03-23 22:35:17
 categories:
     - 异步 JavaScript
 tags:
     - JavaScript
     - 前端
 ---
-
+本文详细解释了 JavaScript 的事件循环机制，以及其任务队列的工作模式。重点是根据 HTML5 标准，对 macrotask 和 microtask 的区别进行了阐述。
+<!-- more -->
 # 前言
 在尝试实现 Promise/A+ 库 [KPromise](github.com/keifergu/kpromise)的过程中，第一次听说了 JavaScript 中的 macrotask 和 microtask 的概念。然后 Google 搜索到了以下的资料:
 
